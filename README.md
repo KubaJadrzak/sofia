@@ -1,6 +1,6 @@
 # Sofia
 
-This is a personal project created for self-learning purposes. The goal is to create a simplified version of Faraday gem. For now, Sofia will support only NetHTTP as adapter, but I have plans to write my own adapter in the future. Initially wanted to name this project alice but there is already alice http client on rubygems.org :(
+This is a personal project created for self-learning purposes. The goal is to create a simplified version of Faraday gem. For now, Sofia will support only NetHTTP as adapter, but I have plans to write my own adapter in the future. Initially wanted to name this project alice but there is already an alice gem :(
 
 ## Development
 
