@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :request, class: 'Alice::Request' do
+  factory :request, class: 'Sofia::Request' do
     http_method { :get }
     base_url    { 'https://api.example.com' }
     path        { '/resource' }
@@ -15,19 +15,19 @@ FactoryBot.define do
 
     trait :post do
       http_method { :post }
-      body        { { 'name' => 'Alice' } }
+      body        { { 'name' => 'Sofia' } }
       headers     { super().merge('Content-Type' => 'application/json') }
     end
 
     trait :put do
       http_method { :put }
-      body        { { 'name' => 'Updated Alice' } }
+      body        { { 'name' => 'Updated Sofia' } }
       headers     { super().merge('Content-Type' => 'application/json') }
     end
 
     trait :patch do
       http_method { :patch }
-      body        { { 'name' => 'Patched Alice' } }
+      body        { { 'name' => 'Patched Sofia' } }
       headers     { super().merge('Content-Type' => 'application/json') }
     end
 

@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in alice.gemspec
+# Specify your gem's dependencies in sofia.gemspec
 gemspec
 
 gem 'irb'

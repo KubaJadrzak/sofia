@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'lib/alice/version'
+require_relative 'lib/sofia/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'alice'
-  spec.version = Alice::VERSION
+  spec.name = 'sofia'
+  spec.version = Sofia::VERSION
   spec.authors = ['KubaJadrzak']
   spec.email = ['kuba.jadrzak@gmail.com']
 
   spec.summary = 'Simple HTTP client'
-  spec.homepage = 'https://github.com/KubaJadrzak/alice'
+  spec.homepage = 'https://github.com/KubaJadrzak/sofia'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.1.0'
 

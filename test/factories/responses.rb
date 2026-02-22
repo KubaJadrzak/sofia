@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :response, class: 'Alice::Response' do
+  factory :response, class: 'Sofia::Response' do
     status   { 200 }
     headers  { { 'Content-Type' => 'application/json' } }
     raw_body { '{"message":"ok"}' }
@@ -50,7 +50,7 @@ FactoryBot.define do
     end
 
     trait :json_body do
-      raw_body { '{"data":{"id":1,"name":"Alice"}}' }
+      raw_body { '{"data":{"id":1,"name":"Sofia"}}' }
       headers  { { 'Content-Type' => 'application/json' } }
     end
 

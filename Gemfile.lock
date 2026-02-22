@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    alice (0.1.0)
+    sofia (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -136,7 +136,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  alice!
+  sofia!
   byebug
   factory_bot
   irb
