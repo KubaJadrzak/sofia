@@ -10,8 +10,7 @@ module Alice
 
       #: (?untyped adapter) -> void
       def initialize(adapter = :net_http)
-        name, klass = validate_and_set(adapter)
-
+        name, klass = validate_and_set(adapter || :net_http)
         @name  = T.let(name, Symbol)
         @klass = T.let(klass, T.class_of(Alice::Adapter::Base))
       end
@@ -31,6 +30,9 @@ module Alice
         else
           Kernel.raise Alice::Error::ArgumentError, "unknown adapter #{adapter}"
         end
+
+      rescue NoMethodError
+        Kernel.raise Alice::Error::ArgumentError, "unknown adapter #{adapter}"
       end
     end
   end

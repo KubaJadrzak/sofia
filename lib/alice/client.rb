@@ -4,7 +4,7 @@
 module Alice
   class Client
 
-    #: (base_url: String, adapter: singleton(Adapter::Base)) -> void
+    #: (base_url: untyped, adapter: untyped) -> void
     def initialize(base_url:, adapter:)
       @base_url = Alice::Types::BaseUrl.new(base_url) #: Alice::Types::BaseUrl
       @adapter = Alice::Types::Adapter.new(adapter) #: Alice::Types::Adapter

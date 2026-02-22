@@ -17,7 +17,7 @@ module Alice
 
       assert_instance_of Alice::Client, client
 
-      assert_equal Alice::Adapter::NetHTTP, client.adapter
+      assert_equal :net_http, client.adapter
     end
 
     def test_performs_request_and_returns_response
