@@ -18,6 +18,11 @@ module Alice
         @body.dup
       end
 
+      #: -> bool
+      def empty?
+        @body.to_h.empty?
+      end
+
       private
 
       #: (untyped? body) -> Hash[String, untyped]

@@ -5,6 +5,7 @@ module Alice
   module Types
     class Headers
       extend T::Sig
+      include Enumerable
 
       #: (?untyped headers) -> void
       def initialize(headers = {})
@@ -28,8 +29,12 @@ module Alice
         @headers.dup
       end
 
-      private
+      #: () { ([String, String]) -> untyped } -> Hash[String, String]
+      def each(...)
+        @headers.each(...)
+      end
 
+      private
 
       #: (untyped) -> Hash[String, String]
       def validate_and_normalize(headers)

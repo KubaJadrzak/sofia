@@ -7,12 +7,21 @@ module Alice
     #: Symbol
     attr_reader :http_method
 
+    #: Alice::Types::Headers
+    attr_reader :headers
+
+    #: Alice::Types::Params
+    attr_reader :params
+
+    #: Alice::Types::Body
+    attr_reader :body
+
     #: (http_method: Symbol, base_url: Alice::Types::BaseUrl) -> void
     def initialize(http_method:, base_url:)
       @http_method = http_method
       @base_url = base_url
       @path     = Alice::Types::Path.new #: Alice::Types::Path
-      @params = Alice::Types::Params.new #: Alice::Types::Params
+      @params   = Alice::Types::Params.new #: Alice::Types::Params
       @headers  = Alice::Types::Headers.new #: Alice::Types::Headers
       @body     = Alice::Types::Body.new #: Alice::Types::Body
     end
@@ -35,16 +44,6 @@ module Alice
     #: (untyped? body) -> void
     def body=(body)
       @body = Alice::Types::Body.new(body)
-    end
-
-    #: -> Hash[String, String]
-    def headers
-      @headers.to_h
-    end
-
-    #: -> Hash[String, untyped]
-    def body
-      @body.to_h
     end
 
     #: -> String
