@@ -29,7 +29,7 @@ module Alice
           net_req = klass.new(uri.request_uri)
 
           request.headers.each { |k, v| net_req[k] = v }
-          body_hash = request.body
+          body_hash = request.body.to_h
           net_req.body = JSON.dump(body_hash) unless body_hash.empty? || request.http_method == :get
 
 

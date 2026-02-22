@@ -4,6 +4,8 @@
 module Alice
   class Client
 
+    HTTP_METHODS = %w[get post put patch delete].freeze
+
     #: (base_url: untyped, adapter: untyped) -> void
     def initialize(base_url:, adapter:)
       @base_url = Alice::Types::BaseUrl.new(base_url) #: Alice::Types::BaseUrl
@@ -20,17 +22,17 @@ module Alice
       @adapter.to_sym
     end
 
-    #: ?{ (Request req) -> void } -> Response
-    def get(&block)
-      raise Alice::Error::ArgumentError, 'configuration of the request must be provided via block' unless block
-
-      request(:get, &block)
+    HTTP_METHODS.each do |method|
+      define_method(method) do |&block|
+        request(method, &block)
+      end
     end
 
     private
 
-    #: (Symbol http_method) { ( Request req ) -> untyped } -> Response
+    #: (Symbol http_method) ?{ ( Request req ) -> untyped } -> Response
     def request(http_method, &block)
+      raise Alice::Error::ArgumentError, 'configuration of the request must be provided via block' unless block
 
       req = Request.new(
         http_method: http_method,
