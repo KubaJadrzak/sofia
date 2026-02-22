@@ -3,7 +3,6 @@
 
 module Alice
   class Client
-
     HTTP_METHODS = %w[get post put patch delete].freeze
 
     #: (base_url: untyped, adapter: untyped) -> void
