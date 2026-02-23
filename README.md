@@ -24,10 +24,10 @@ class EspagoClient
 
   def initialize
     base_url = ENV.fetch('ESPAGO_BASE_URL')
-    @user = Rails.application.credentials.dig(:espago, :app_id) #: String
-    @password = Rails.application.credentials.dig(:espago, :password) #: String
+    @user = Rails.application.credentials.dig(:espago, :app_id)
+    @password = Rails.application.credentials.dig(:espago, :password)
 
-    @client = Sofia.new(base_url: base_url) #: Sofia::Client
+    @client = Sofia.new(base_url: base_url)
   end
 
   def send(path, body: nil, method: :get)
