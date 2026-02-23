@@ -54,7 +54,7 @@ FactoryBot.define do
       headers  { { 'Content-Type' => 'application/json' } }
     end
 
-    trait :invalid_json do
+    trait :parser_error do
       raw_body { 'not valid json {' }
       headers  { { 'Content-Type' => 'application/json' } }
     end

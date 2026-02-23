@@ -61,8 +61,8 @@ module Sofia
       assert_equal body['error'], 'internal_server_error'
     end
 
-    def test_response_raises_when_invalid_json
-      response = FactoryBot.build(:response, :invalid_json)
+    def test_response_raises_when_parser_error
+      response = FactoryBot.build(:response, :parser_error)
       assert_equal true, response.success?
       assert_equal false, response.failure?
       assert_equal 'not valid json {', response.raw_body
