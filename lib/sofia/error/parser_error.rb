@@ -2,8 +2,7 @@
 # frozen_string_literal: true
 
 module Sofia
-  module Helper
+  module Error
+    class ParserError < Base; end
   end
 end
-
-require_relative 'helper/params'

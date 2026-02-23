@@ -67,7 +67,7 @@ module Sofia
       assert_equal false, response.failure?
       assert_equal 'not valid json {', response.raw_body
 
-      assert_raises(Sofia::Error::InvalidJSON) do
+      assert_raises(Sofia::Error::ParserError) do
         response.body
       end
     end

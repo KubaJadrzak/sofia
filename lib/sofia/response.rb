@@ -41,7 +41,7 @@ module Sofia
 
       JSON.parse(body)
     rescue JSON::ParserError
-      raise Sofia::Error::InvalidJSON
+      raise Sofia::Error::ParserError
     end
 
     #: -> bool

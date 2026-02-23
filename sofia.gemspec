@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ['KubaJadrzak']
   spec.email = ['kuba.jadrzak@gmail.com']
 
-  spec.summary = 'Simple HTTP client'
+  spec.summary = 'Simple HTTP abstraction layer'
   spec.homepage = 'https://github.com/KubaJadrzak/sofia'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.1.0'
