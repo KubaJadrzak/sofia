@@ -2,6 +2,8 @@
 
 This is a personal project created for self-learning purposes. The goal is to create a simple HTTP client abstraction layer, similar to `Faraday`. At the current moment `Sofia` supports only `NetHTTP` as adapter, and only with `Content-Type: JSON` and default configuration. While basic, at the current moment `Sofia` is implement into my other project [Shopik](https://github.com/KubaJadrzak/Shopik) and allows to perform HTTP requests correctly. I will add more functionality with time. The goal is to ultimately create my own adapter as well.
 
+# How it works
+
 In order to perform a request with `Sofia` you need to initialize an instance of `client` by providing `base_url` and `adapter`. At the current moment the only support adapter is `NetHTTP` and it will be used by default.
 ```
  @client = Sofia.new(base_url: base_url, adapter: adapter)
