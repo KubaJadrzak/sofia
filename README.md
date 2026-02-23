@@ -4,7 +4,7 @@ This is a personal project created for self-learning purposes. The goal is to cr
 
 # How it works
 
-In order to perform a request with `Sofia` you need to initialize an instance of `client` by providing `base_url` and `adapter`. At the current moment the only support adapter is `NetHTTP` and it will be used by default.
+In order to perform a request with `Sofia` you need to initialize an instance of `client` class by providing `base_url` and `adapter`. At the current moment the only support adapter is `NetHTTP` and it will be used by default.
 ```
  @client = Sofia.new(base_url: base_url, adapter: adapter)
 ```
