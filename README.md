@@ -1,6 +1,6 @@
 # Sofia
 
-This is a personal project created for self-learning purposes. The goal is to create a simple HTTP client abstraction layer, similar to `Faraday`. At the current moment `Sofia` supports only `NetHTTP` as adapter, and only with `Content-Type: JSON` and default configuration. While basic, at the current moment `Sofia` is implement into my other project [Shopik](https://github.com/KubaJadrzak/Shopik) and allows to perform HTTP requests correctly. I will add more functionality with time. The goal is to ultimately create my own adapter as well.
+This is a personal project created for self-learning purposes. The goal is to create a simple HTTP client abstraction layer, similar to `Faraday`. At the current moment `Sofia` supports only `NetHTTP` as adapter, and only with `Content-Type: JSON` and default configuration. While basic, at the current moment `Sofia` is implemented into my other project [Shopik](https://github.com/KubaJadrzak/Shopik) and allows to perform HTTP requests correctly. I will add more functionality with time. The goal is to ultimately create my own adapter as well.
 
 # How it works
 
