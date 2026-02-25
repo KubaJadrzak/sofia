@@ -5,12 +5,12 @@ This is a personal project created for self-learning purposes. The goal is to cr
 # How it works
 
 In order to perform a request with `Sofia` you need to initialize an instance of `client` class by providing `base_url` and `adapter`. At the current moment the only supported adapter is `NetHTTP` and it will be used by default.
-```
+```rb
  @client = Sofia.new(base_url: base_url, adapter: adapter)
 ```
 
 You can perform a request via method `send` on the instance of `client` class. You need to provide http request type (for now only `get`, `post`, `put`, `patch`, `delete` are supported) as method argument as well as block of code with configuration, for example: 
-```
+```rb
     response = @client.send(method) do |req|
       req.path = path
       req.headers['Accept'] = 'application/json'
@@ -19,7 +19,7 @@ You can perform a request via method `send` on the instance of `client` class. Y
     end
 ```
 It is a good practice to rescue errors which can be thrown by `Sofia`. The response codes `400-499`  and `500-599` are not errors, instead you need to handle these on your own. This is an example of the entire flow that allows you to make a request based on my [Shopik](https://github.com/KubaJadrzak/Shopik) project where `Sofia` is implement as HTTP client abstraction layer:
-```
+```rb
 class EspagoClient
 
   def initialize
