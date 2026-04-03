@@ -17,28 +17,39 @@ module Sofia
         # @override
         #: (Sofia::Request request) -> Sofia::Response
         def call(request)
-          uri = URI.parse(request.url)
-
-          http = Net::HTTP.new(uri.host, uri.port)
-          http.use_ssl = uri.scheme == 'https'
-
-          klass = Net::HTTP.const_get(request.http_method.capitalize)
-
-          raise Sofia::Error::ArgumentError, 'only HTTP(S) URLs are supported' unless uri.is_a?(URI::HTTP)
-
-          net_req = klass.new(uri.request_uri)
-
-          request.headers.each { |k, v| net_req[k] = v }
-          body_hash = request.body.to_h
-          net_req.body = JSON.dump(body_hash) unless body_hash.empty? || request.http_method == :get
-
-
+          uri = parse_uri(request.url)
+          http = configure_http(uri)
+          net_req = build_request(uri, request)
           response = perform_request(http, net_req)
-
           adapt_response(response, request)
         end
 
         private
+
+        #: (String url) -> URI::HTTP
+        def parse_uri(url)
+          uri = URI.parse(url)
+          raise Sofia::Error::ArgumentError, 'only HTTP(S) URLs are supported' unless uri.is_a?(URI::HTTP)
+
+          uri
+        end
+
+        #: (URI::HTTP uri) -> Net::HTTP
+        def configure_http(uri)
+          http = Net::HTTP.new(uri.host, uri.port)
+          http.use_ssl = uri.scheme == 'https'
+          http
+        end
+
+        #: (URI::HTTP uri, Sofia::Request request) -> Net::HTTPRequest
+        def build_request(uri, request)
+          klass = Net::HTTP.const_get(request.http_method.capitalize)
+          net_req = klass.new(uri.request_uri)
+          request.headers.each { |k, v| net_req[k] = v }
+          body_hash = request.body.to_h
+          net_req.body = JSON.dump(body_hash) unless body_hash.empty? || request.http_method == :get
+          net_req
+        end
 
         #: (Net::HTTPResponse response, Sofia::Request request) -> Sofia::Response
         def adapt_response(response, request)
