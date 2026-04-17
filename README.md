@@ -1,24 +1,69 @@
 # Sofia
 
-This is a personal project created for self-learning purposes. The goal is to create a simple HTTP client abstraction layer, similar to `Faraday`. At the current moment `Sofia` supports only `NetHTTP` as adapter, and only with `Content-Type: JSON` and default configuration. While basic, at the current moment `Sofia` is implemented into my other project [Shopik](https://github.com/KubaJadrzak/Shopik) and allows to perform HTTP requests correctly. I will add more functionality with time. The goal is to ultimately create my own HTTP client as well.
+A simple HTTP client abstraction layer for Ruby, similar to `Faraday`. Sofia provides an abstraction layer so you can swap the underlying HTTP library without changing your application code. It is implemented in my other project [Shopik](https://github.com/KubaJadrzak/Shopik) alongside my own HTTP client library [Soren](https://github.com/KubaJadrzak/soren)
 
 # How it works
 
-In order to perform a request with `Sofia` you need to initialize an instance of `client` class by providing `base_url` and `adapter`. At the current moment the only supported adapter is `NetHTTP` and it will be used by default.
+Initialize a client with a `base_url` and an optional `adapter` (defaults to `:net_http`):
+
 ```rb
- @client = Sofia.new(base_url: base_url, adapter: adapter)
+@client = Sofia.new(base_url: base_url, adapter: adapter)
 ```
 
-You can perform a request via method `send` on the instance of `client` class. You need to provide http request type (for now only `get`, `post`, `put`, `patch`, `delete` are supported) as method argument as well as block of code with configuration, for example: 
+Call the desired HTTP method via `send` with a configuration block. The supported methods are `get`, `post`, `put`, `patch`, and `delete`:
+
 ```rb
-    response = @client.send(method) do |req|
-      req.path = path
-      req.headers['Accept'] = 'application/json'
-      req.headers['Authorization'] = "Basic #{encoded_credentials}"
-      req.body = body if body
-    end
+response = @client.send(method) do |req|
+  req.path = path
+  req.headers['Accept'] = 'application/json'
+  req.headers['Authorization'] = "Basic #{encoded_credentials}"
+  req.body = body if body
+end
 ```
-It is a good practice to rescue errors which can be thrown by `Sofia`. The response codes `400-499`  and `500-599` are not errors, instead you need to handle these on your own. This is an example of the entire flow that allows you to make a request based on my [Shopik](https://github.com/KubaJadrzak/Shopik) project where `Sofia` is implement as HTTP client abstraction layer:
+
+Response codes in the `400–499` and `500–599` ranges are not raised as errors — inspect `response.status`, `response.client_error?`, or `response.server_error?` yourself.
+
+| Error | Cause |
+|---|---|
+| `Sofia::Error::TimeoutError` | Read, write, or connection timeout |
+| `Sofia::Error::ConnectionFailed` | DNS failure, refused connection, network error |
+| `Sofia::Error::SSLError` | TLS handshake failure |
+| `Sofia::Error::ParserError` | Response body is not valid JSON |
+
+## Adapters
+
+Sofia supports two adapter: `:net_http` as well as `:soren`. [Soren](https://github.com/KubaJadrzak/soren) is my own simple HTTP client library :P.
+
+```rb
+# Default — Net::HTTP
+client = Sofia.new(base_url: 'https://api.example.com', adapter: :net_http)
+
+# Soren
+client = Sofia.new(base_url: 'https://api.example.com', adapter: :soren)
+```
+
+## Timeouts
+
+Timeouts can be configured per client via the `options:` keyword:
+
+```rb
+client = Sofia.new(
+  base_url: 'https://api.example.com',
+  adapter: :net_http,
+  options: {
+    read_timeout:       60,   # seconds — default 30
+    write_timeout:      30,   # seconds — default 30
+    connection_timeout: 5,    # seconds — default 10
+  },
+)
+```
+
+Both adapters support all three timeout values.
+
+## Example
+
+This is an example of the entire flow from my [Shopik](https://github.com/KubaJadrzak/Shopik) project, where both `Sofia` HTTP client abstraction layer and `Soren` HTTP client library are implemented:
+
 ```rb
 class EspagoClient
 
