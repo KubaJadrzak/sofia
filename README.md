@@ -1,6 +1,8 @@
 # Sofia
 
-A simple HTTP client abstraction layer for Ruby, similar to `Faraday`. Sofia provides an abstraction layer so you can swap the underlying HTTP library without changing your application code. It is implemented in my other project [Shopik](https://github.com/KubaJadrzak/Shopik) alongside my own HTTP client library [Soren](https://github.com/KubaJadrzak/soren), and everything seems to be working pretty good :P
+A simple HTTP client abstraction layer for Ruby, similar to `Faraday`. Sofia provides an abstraction layer so you can swap the underlying HTTP library without changing your application code. 
+
+Sofia is currently implemented in my integration with Espago Payment System [Shopik](https://github.com/KubaJadrzak/Shopik) alongside my own HTTP client library [Soren](https://github.com/KubaJadrzak/soren), and everything seems to be working pretty good :P
 
 # How it works
 
