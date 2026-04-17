@@ -18,3 +18,4 @@ module Sofia
 end
 
 require_relative 'adapter/net_http'
+require_relative 'adapter/soren'

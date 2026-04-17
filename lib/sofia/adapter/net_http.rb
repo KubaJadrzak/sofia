@@ -58,7 +58,7 @@ module Sofia
         def adapt_response(response, request)
           Sofia::Response.new(
             status:   response.code.to_i,
-            headers:  response.each_header.to_h,
+            headers:  response.to_hash,
             raw_body: response.body,
             request:  request,
           )

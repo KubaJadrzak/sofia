@@ -25,7 +25,7 @@ module Sofia
       assert_equal 200, response.status
       assert_equal true, response.success?
       assert_equal 'https://httpbin.org/get', response.body['url']
-      assert_equal 'application/json', response.headers['content-type']
+      assert_includes response.headers['content-type'], 'application/json'
     end
 
     def test_performs_post_request_and_returns_response
@@ -38,7 +38,7 @@ module Sofia
       assert_equal 200, response.status
       assert_equal true, response.success?
       assert_equal({ 'name' => 'Sofia' }, response.body['json'])
-      assert_equal 'application/json', response.headers['content-type']
+      assert_includes response.headers['content-type'], 'application/json'
     end
 
     def test_performs_put_request_and_returns_response

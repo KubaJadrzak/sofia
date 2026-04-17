@@ -7,7 +7,7 @@ module Sofia
     #: Integer
     attr_reader :status
 
-    #: Hash[String, String]
+    #: Hash[String, Array[String]]
     attr_reader :headers
 
     #: String?
@@ -16,7 +16,7 @@ module Sofia
     #: Sofia::Request
     attr_reader :request
 
-    #: (status: Integer, headers: Hash[String, String], raw_body: String?, request: Sofia::Request) -> void
+    #: (status: Integer, headers: Hash[String, Array[String]], raw_body: String?, request: Sofia::Request) -> void
     def initialize(status:, headers:, raw_body:, request:)
       @status  = status
       @headers = headers

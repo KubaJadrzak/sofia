@@ -28,6 +28,8 @@ module Sofia
           case adapter&.to_sym
           when :net_http
             [:net_http, Sofia::Adapter::NetHTTP]
+          when :soren
+            [:soren, Sofia::Adapter::Soren]
           else
             Kernel.raise Sofia::Error::ArgumentError, "unknown adapter #{adapter}"
           end

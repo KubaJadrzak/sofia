@@ -19,7 +19,7 @@ module Sofia
 
       assert_equal true, response.success?
       assert_equal false, response.failure?
-      assert_equal headers['Content-Type'], 'application/json'
+      assert_equal headers['Content-Type'], ['application/json']
     end
 
     def test_response_exposes_body_as_json

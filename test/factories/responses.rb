@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :response, class: 'Sofia::Response' do
     status   { 200 }
-    headers  { { 'Content-Type' => 'application/json' } }
+    headers  { { 'Content-Type' => ['application/json'] } }
     raw_body { '{"message":"ok"}' }
     association :request
 
@@ -51,12 +51,12 @@ FactoryBot.define do
 
     trait :json_body do
       raw_body { '{"data":{"id":1,"name":"Sofia"}}' }
-      headers  { { 'Content-Type' => 'application/json' } }
+      headers  { { 'Content-Type' => ['application/json'] } }
     end
 
     trait :parser_error do
       raw_body { 'not valid json {' }
-      headers  { { 'Content-Type' => 'application/json' } }
+      headers  { { 'Content-Type' => ['application/json'] } }
     end
 
     trait :empty_body do

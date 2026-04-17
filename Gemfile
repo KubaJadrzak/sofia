@@ -20,3 +20,5 @@ gem 'tapioca'
 
 gem 'byebug'
 gem 'factory_bot'
+
+gem 'soren'

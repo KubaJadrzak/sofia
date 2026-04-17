@@ -35,6 +35,20 @@ module Sofia
           assert_equal Sofia::Adapter::NetHTTP, adapter.klass
         end
 
+        def test_sets_soren_when_symbol_is_given
+          adapter = Sofia::Types::Client::Adapter.new(:soren)
+
+          assert_equal :soren, adapter.to_sym
+          assert_equal Sofia::Adapter::Soren, adapter.klass
+        end
+
+        def test_sets_soren_when_string_is_given
+          adapter = Sofia::Types::Client::Adapter.new('soren')
+
+          assert_equal :soren, adapter.to_sym
+          assert_equal Sofia::Adapter::Soren, adapter.klass
+        end
+
         def test_raises_when_unknown_adapter_symbol_is_given
           error = assert_raises(Sofia::Error::ArgumentError) do
             Sofia::Types::Client::Adapter.new(:unknown)
