@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sofia (0.1.0)
+    sofia (0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -136,7 +136,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  sofia!
   byebug
   factory_bot
   irb
@@ -145,6 +144,7 @@ DEPENDENCIES
   openssl
   rake (~> 13.0)
   rubocop (~> 1.21)
+  sofia!
   sorbet
   sorbet-runtime
   tapioca

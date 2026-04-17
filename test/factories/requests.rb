@@ -39,6 +39,7 @@ FactoryBot.define do
       req = new(
         http_method: http_method,
         base_url:    base_url,
+        options:     Sofia::Options.new,
       )
       req.path    = path
       req.headers = headers

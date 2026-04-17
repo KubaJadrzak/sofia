@@ -6,7 +6,7 @@ require 'test_helper'
 module Sofia
   class RequestTest < Minitest::Test
     def base_url
-      Sofia::Types::BaseUrl.new('https://api.example.com')
+      Sofia::Types::Client::BaseUrl.new('https://api.example.com')
     end
 
     # INITILIZATION

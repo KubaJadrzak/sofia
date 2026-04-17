@@ -5,10 +5,11 @@ module Sofia
   class Client
     HTTP_METHODS = %w[get post put patch delete].freeze
 
-    #: (base_url: untyped, adapter: untyped) -> void
-    def initialize(base_url:, adapter:)
-      @base_url = Sofia::Types::BaseUrl.new(base_url) #: Sofia::Types::BaseUrl
-      @adapter = Sofia::Types::Adapter.new(adapter) #: Sofia::Types::Adapter
+    #: (base_url: untyped, adapter: untyped, ?options: untyped) -> void
+    def initialize(base_url:, adapter:, options: nil)
+      @base_url = Sofia::Types::Client::BaseUrl.new(base_url) #: Sofia::Types::Client::BaseUrl
+      @adapter  = Sofia::Types::Client::Adapter.new(adapter) #: Sofia::Types::Client::Adapter
+      @options  = Sofia::Types::Client::Options.new(options).value #: Sofia::Options
     end
 
     #: -> String
@@ -20,6 +21,9 @@ module Sofia
     def adapter
       @adapter.to_sym
     end
+
+    #: Sofia::Options
+    attr_reader :options
 
     #: ?{ (Request req) -> untyped } -> Response
     def get(&) = request(:get, &)
@@ -45,6 +49,7 @@ module Sofia
       req = Request.new(
         http_method: http_method,
         base_url:    @base_url,
+        options:     @options,
       )
 
       block.call(req)

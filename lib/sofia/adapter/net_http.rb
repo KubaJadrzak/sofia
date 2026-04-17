@@ -18,7 +18,7 @@ module Sofia
         #: (Sofia::Request request) -> Sofia::Response
         def call(request)
           uri = parse_uri(request.url)
-          http = configure_http(uri)
+          http = configure_http(uri, request)
           net_req = build_request(uri, request)
           response = perform_request(http, net_req)
           adapt_response(response, request)
@@ -34,10 +34,13 @@ module Sofia
           uri
         end
 
-        #: (URI::HTTP uri) -> Net::HTTP
-        def configure_http(uri)
+        #: (URI::HTTP uri, Sofia::Request request) -> Net::HTTP
+        def configure_http(uri, request)
           http = Net::HTTP.new(uri.host, uri.port)
-          http.use_ssl = uri.scheme == 'https'
+          http.use_ssl      = uri.scheme == 'https'
+          http.read_timeout = request.options.read_timeout.to_f
+          http.write_timeout = request.options.write_timeout.to_f
+          http.open_timeout  = request.options.connection_timeout.to_f
           http
         end
 
