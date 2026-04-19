@@ -23,6 +23,8 @@ response = @client.send(method) do |req|
 end
 ```
 
+At the current moment Sofia supports only JSON!!!
+
 Response codes in the `400–499` and `500–599` ranges are not raised as errors — inspect `response.status`, `response.client_error?`, or `response.server_error?` yourself.
 
 | Error | Cause |
