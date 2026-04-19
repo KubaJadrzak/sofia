@@ -74,7 +74,7 @@ class EspagoClient
     @user = Rails.application.credentials.dig(:espago, :app_id)
     @password = Rails.application.credentials.dig(:espago, :password)
 
-    @client = Sofia.new(base_url: base_url)
+    @client = Sofia.new(base_url: base_url, adapter: :soren)
   end
 
   def send(path, body: nil, method: :get)
