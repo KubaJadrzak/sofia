@@ -37,7 +37,7 @@ module Sofia
     #: -> JSONValue?
     def body
       body = raw_body
-      return unless body
+      return if body.nil? || body.empty?
 
       JSON.parse(body)
     rescue JSON::ParserError

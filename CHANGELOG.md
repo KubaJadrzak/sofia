@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+## [0.1.5] - 2026-04-20
+
+### Fixed
+
+- Properly handle responses with empty '' body.
+
 ## [0.1.4] - 2026-04-20
 
 ### Added

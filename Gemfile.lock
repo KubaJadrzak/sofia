@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sofia (0.1.4)
+    sofia (0.1.5)
       soren (~> 0.1)
 
 GEM
