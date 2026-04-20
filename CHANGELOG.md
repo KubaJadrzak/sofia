@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+## [0.1.4] - 2026-04-20
+
+### Added
+
+- Soren gem updated to 0.1.5
+
 ## [0.1.3] - 2026-04-17
 
 ### Added
